@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class Casino {
     public Card[] deck;
-    Player[] players = new Player[3];
+    public Player[] players = new Player[3];
+    public Player dealer;
     public static void main(String[] args) {
         Casino vegas = new Casino();
         System.out.println("Welcome to Vegas...");
@@ -25,7 +26,9 @@ public class Casino {
         for (int i = 0; i < 3; i++){
             players[i] = new Player(i + 1);
         }
-
+        dealer = new Player(0);
+        deal();
+        dealer.printInfo();
     }
 
     public void shuffle(){
@@ -36,28 +39,15 @@ public class Casino {
             deck[rand2] = deck[rand1];
             deck[rand1] = temp;
         }
-//        ArrayList<Integer> indices = new ArrayList<>(52);
-//        for (int i = 0; i < 52; i++){
-//            indices.add(i);
-//        }
-//        for (int i = 0; i < 26; i++){
-//            int ran1 = (int)(Math.random() * (indices.size() - 1));
-//            int ran2 = (int)(Math.random() * (indices.size() - 1));
-//            if (ran1 == ran2) {
-//                ran1 = (int) (Math.random() * (indices.size() - 1));
-//                ran2 = (int) (Math.random() * (indices.size() - 1));
-//            }
-//            int ranIndex1 = indices.get(ran1);
-//            int ranIndex2 = indices.get(ran2);
-//            Card temp = deck[ranIndex2];
-//            deck[ranIndex2] = deck[ranIndex1];
-//            deck[ranIndex1] = temp;
-//            indices.remove(ran1);
-//            indices.remove(ran2);
-//            System.out.println(indices);
-//        }
-    } // Make an ArrayList of indices
-    // Swap the two in deck
-    // Get rid of the indices used
-    // Guarantee a swap for everything at once
+    }
+
+    public void deal(){
+        dealer.hand[0] = deck[0];
+        dealer.hand[1] = deck[1];
+        for (int i = 0; i < 2; i ++){
+            players[0].hand[i] = deck[2 + i];
+            players[1].hand[i] = deck[3 + i];
+            players[2].hand[i] = deck[4 + i];
+        }
+    }
 }
