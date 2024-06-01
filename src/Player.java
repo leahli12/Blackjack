@@ -9,7 +9,12 @@ public class Player {
     }
 
     public void printInfo(){
-        System.out.println("Player Number " + playerNum);
+        if (playerNum == 0){
+            System.out.println("Dealer");
+        }
+        else {
+            System.out.println("Player Number " + playerNum);
+        }
         for(int i = 0; i < hand.length; i++){
             hand[i].printInfo();
         }

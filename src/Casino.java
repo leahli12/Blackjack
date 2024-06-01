@@ -29,6 +29,9 @@ public class Casino {
         dealer = new Player(0);
         deal();
         dealer.printInfo();
+        for (int i = 0; i < 3; i++){
+            players[i].printInfo();
+        }
     }
 
     public void shuffle(){
@@ -44,10 +47,14 @@ public class Casino {
     public void deal(){
         dealer.hand[0] = deck[0];
         dealer.hand[1] = deck[1];
+        int currentIndex = 2;
         for (int i = 0; i < 2; i ++){
-            players[0].hand[i] = deck[2 + i];
-            players[1].hand[i] = deck[3 + i];
-            players[2].hand[i] = deck[4 + i];
+            players[0].hand[i] = deck[currentIndex];
+            currentIndex++;
+            players[1].hand[i] = deck[currentIndex];
+            currentIndex++;
+            players[2].hand[i] = deck[currentIndex];
+            currentIndex++;
         }
     }
 }
